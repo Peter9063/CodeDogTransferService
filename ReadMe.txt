@@ -1,7 +1,5 @@
 ## TransferService
 
-东海服务器端运维工具
-
 B.安装说明
 
 	1.python环境要求:
