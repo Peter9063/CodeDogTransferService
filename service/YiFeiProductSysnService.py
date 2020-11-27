@@ -32,6 +32,7 @@ class YiFeiProductSysnService():
             invmbItem.MB003=newItem.MB003
             invmbItem.MB009=newItem.MB009
             updateList.append(invmbItem)
+            self.logger.info("保存:%s记录"%invmbItem.MB001)
             try:
                 sqlSession.commit()
             except Exception as e:
@@ -149,11 +150,11 @@ class YiFeiProductSysnService():
             else:
                 self.updateCompare(msSqlSession,productMapFrom2YiFei, invmbItem, insertList, updateList)
         
+                
         self.logger.info("需要新增保存%s条."%str(len(insertList)))
         for row in insertList:
             try:
-                self.logger.info("save:%s"%row.MB001)
-                self.logger.info(row)
+                self.logger.info("保存:%s记录"%row.MB001)
                 msSqlSession.add(row)
                 msSqlSession.commit()
             except Exception as e:

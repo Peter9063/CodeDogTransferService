@@ -59,7 +59,7 @@ class TransferService(win32serviceutil.ServiceFramework):
                                                                 database=self.config.get("mssqlconfig","database"),
                                                                 charset=self.config.get("mssqlconfig","charset"),
                                                                 encoding=self.config.get("mssqlconfig","encoding"),
-                                                                echo=True)
+                                                                echo=False)
         MySQLManager.getInstance().config(host=self.config.get("mysqlconfig","host"),
                                                                 port=self.config.get("mysqlconfig","port"),
                                                                 user= self.config.get("mysqlconfig","user"),
@@ -67,7 +67,7 @@ class TransferService(win32serviceutil.ServiceFramework):
                                                                 database=self.config.get("mysqlconfig","database"),
                                                                 charset=self.config.get("mysqlconfig","charset"),
                                                                 encoding=self.config.get("mysqlconfig","encoding"),
-                                                                echo=True)
+                                                                echo=False)
         self.services["YiFeiProductSysnService"]=YiFeiProductSysnService(self.logger)
         
                 
@@ -189,17 +189,17 @@ class TransferService(win32serviceutil.ServiceFramework):
                  
             
 if __name__=='__main__':
-#     dhOperationService=TransferService(None)
-#     dhOperationService.runTask()
+    dhOperationService=TransferService(None)
+    dhOperationService.runTask()
 # 正式的程序
-    if len(sys.argv) == 1:
-        try:
-            evtsrc_dll = os.path.abspath(servicemanager.__file__)
-            servicemanager.PrepareToHostSingle(TransferService)
-            servicemanager.Initialize('TransferService', evtsrc_dll)
-            servicemanager.StartServiceCtrlDispatcher()
-        except win32service.error as details:
-            if details[0] == winerror.ERROR_FAILED_SERVICE_CONTROLLER_CONNECT:
-                win32serviceutil.usage()
-    else:
-        win32serviceutil.HandleCommandLine(TransferService)
+#     if len(sys.argv) == 1:
+#         try:
+#             evtsrc_dll = os.path.abspath(servicemanager.__file__)
+#             servicemanager.PrepareToHostSingle(TransferService)
+#             servicemanager.Initialize('TransferService', evtsrc_dll)
+#             servicemanager.StartServiceCtrlDispatcher()
+#         except win32service.error as details:
+#             if details[0] == winerror.ERROR_FAILED_SERVICE_CONTROLLER_CONNECT:
+#                 win32serviceutil.usage()
+#     else:
+#         win32serviceutil.HandleCommandLine(TransferService)
