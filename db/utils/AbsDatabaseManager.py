@@ -1,15 +1,10 @@
 import abc
-import threading
 import traceback
-
 import sqlalchemy.ext.declarative.api
-
 from utils.LoggerHelp import LoggerHelp
-
 
 class AbsDatabaseManager(metaclass=abc.ABCMeta):
     logger=None
-    _instance_lock = threading.Lock()
     _sqlEngine=None
     _sqlSession=None
      
@@ -19,10 +14,9 @@ class AbsDatabaseManager(metaclass=abc.ABCMeta):
         else:
             self.logger=logger
     
-
-    @abc.abstractmethod
-    def getInstance(self,cls,*args, **kwargs):
-        pass
+#     @abc.abstractmethod
+#     def getInstance(self,cls,*args, **kwargs):
+#         pass
     
     @abc.abstractmethod 
     def config(self,host='127.0.0.1',port='3306',database='database',user='root',paswd='root',charset='utf8' ,encoding='utf-8',
