@@ -30,7 +30,7 @@ class YiFeiProductSysnService():
             invmbItem.MB003=newItem.MB003
             invmbItem.MB009=newItem.MB009
             updateList.append(invmbItem)
-            self.logger.info("保存:%s记录"%invmbItem.MB001)
+            self.logger.info("更新:%s记录"%invmbItem.MB001)
             try:
                 sqlSession.commit()
             except Exception as e:

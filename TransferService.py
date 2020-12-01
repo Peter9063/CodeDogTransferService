@@ -17,7 +17,9 @@ import win32serviceutil
 import winerror
 
 from db.utils.MsSQLManager import MsSQLManager
+from db.utils.MsSQLManager4DHMeter import MsSQLManager4DHTimer
 from db.utils.MySQLManager import MySQLManager
+from service.DongHaiTimerProductSysnService import DongHaiTimerProductSysnService
 from service.YiFeiProductSysnService import YiFeiProductSysnService
 
 
@@ -68,7 +70,16 @@ class TransferService(win32serviceutil.ServiceFramework):
                                                                 charset=self.config.get("mysqlconfig","charset"),
                                                                 encoding=self.config.get("mysqlconfig","encoding"),
                                                                 echo=False)
+        MsSQLManager4DHTimer.getInstance().config(host=self.config.get("mssqlconfig4DHTimer","host"),
+                                                        port=self.config.get("mssqlconfig4DHTimer","port"),
+                                                        user= self.config.get("mssqlconfig4DHTimer","user"),
+                                                        paswd=self.config.get("mssqlconfig4DHTimer","paswd"),
+                                                        database=self.config.get("mssqlconfig4DHTimer","database"),
+                                                        charset=self.config.get("mssqlconfig4DHTimer","charset"),
+                                                        encoding=self.config.get("mssqlconfig4DHTimer","encoding"),
+                                                        echo=False)
         self.services["YiFeiProductSysnService"]=YiFeiProductSysnService(self.logger)
+        self.services["DongHaiTimerProductSysnService"]=DongHaiTimerProductSysnService(self.logger)
         
                 
         
@@ -180,7 +191,8 @@ class TransferService(win32serviceutil.ServiceFramework):
                 if(runFlag==True):
                     self.logger.info('runTask begin! The time is: %s' % datetime.now())
                     try:
-                        self.services["YiFeiProductSysnService"].dongYuProductSysn()
+#                         self.services["YiFeiProductSysnService"].dongYuProductSysn()
+                        self.services["DongHaiTimerProductSysnService"].productSysn()
                     except Exception as e:   
                         self.logger.error(traceback.format_exc())
                     self.logger.info('runTask finished! The time is: %s' % datetime.now())
