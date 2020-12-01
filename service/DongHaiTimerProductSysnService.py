@@ -28,11 +28,9 @@ class DongHaiTimerProductSysnService():
         if (productMapFromdhGroup.__contains__(newItem.MB001)):
                 
             invmbItem = productMapFromdhGroup[newItem.MB001]
-            self.logger.info(invmbItem.__dict__)
             self.copyModel(newItem, invmbItem)
             updateList.append(invmbItem)
             self.logger.info("更新:%s记录"%invmbItem.MB001)
-            self.logger.info(invmbItem.__dict__)
             try:
                 sqlSession.commit()
             except Exception as e:
