@@ -191,7 +191,7 @@ class TransferService(win32serviceutil.ServiceFramework):
                 if(runFlag==True):
                     self.logger.info('runTask begin! The time is: %s' % datetime.now())
                     try:
-#                         self.services["YiFeiProductSysnService"].dongYuProductSysn()
+                        self.services["YiFeiProductSysnService"].dongYuProductSysn()
                         self.services["DongHaiTimerProductSysnService"].productSysn()
                     except Exception as e:   
                         self.logger.error(traceback.format_exc())
@@ -201,17 +201,17 @@ class TransferService(win32serviceutil.ServiceFramework):
                  
             
 if __name__=='__main__':
-    dhOperationService=TransferService(None)
-    dhOperationService.runTask()
+#     dhOperationService=TransferService(None)
+#     dhOperationService.runTask()
 # 正式的程序
-#     if len(sys.argv) == 1:
-#         try:
-#             evtsrc_dll = os.path.abspath(servicemanager.__file__)
-#             servicemanager.PrepareToHostSingle(TransferService)
-#             servicemanager.Initialize('TransferService', evtsrc_dll)
-#             servicemanager.StartServiceCtrlDispatcher()
-#         except win32service.error as details:
-#             if details[0] == winerror.ERROR_FAILED_SERVICE_CONTROLLER_CONNECT:
-#                 win32serviceutil.usage()
-#     else:
-#         win32serviceutil.HandleCommandLine(TransferService)
+    if len(sys.argv) == 1:
+        try:
+            evtsrc_dll = os.path.abspath(servicemanager.__file__)
+            servicemanager.PrepareToHostSingle(TransferService)
+            servicemanager.Initialize('TransferService', evtsrc_dll)
+            servicemanager.StartServiceCtrlDispatcher()
+        except win32service.error as details:
+            if details[0] == winerror.ERROR_FAILED_SERVICE_CONTROLLER_CONNECT:
+                win32serviceutil.usage()
+    else:
+        win32serviceutil.HandleCommandLine(TransferService)

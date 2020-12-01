@@ -9,7 +9,6 @@ from db.utils.MsSQLManager import MsSQLManager
 from db.utils.MsSQLManager4DHMeter import MsSQLManager4DHTimer
 from entity.yifei.INVMB import INVMB
 from utils.LoggerHelp import LoggerHelp
-from future.types import str
 
 
 class DongHaiTimerProductSysnService():
