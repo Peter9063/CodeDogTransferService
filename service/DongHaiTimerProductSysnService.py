@@ -80,8 +80,8 @@ class DongHaiTimerProductSysnService():
                 self.updateCompare(dhGRoupSqlSession,productMapFromdhGroup, invmbItem, insertList, updateList)
                 invmbItem03=INVMB()
                 self.copyModel(invmbItem, invmbItem03)
-                invmbItem03.MB001="03%s"%invmbItem03.MB001
                 invmbItem03.MB080= invmbItem03.MB001 #货号，通过货号取得采购单品号；
+                invmbItem03.MB001="03%s"%invmbItem03.MB001
                 invmbItem03.MB005="111" #111定时器成品；121定时器配件;131定时器原材料
                 self.updateCompare(dhGRoupSqlSession,productMapFromdhGroup, invmbItem03, insertList, updateList)
             else:
