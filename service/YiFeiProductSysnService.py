@@ -26,7 +26,7 @@ class YiFeiProductSysnService():
 #         self.logger.info("compare:"+newItem.MB001+":"+str(productMapFrom2YiFei.__contains__(newItem.MB001)))
         if (productMapFrom2YiFei.__contains__(newItem.MB001)):
             invmbItem = productMapFrom2YiFei[newItem.MB001]
-            invmbItem.MB002=newItem.MB002
+            #invmbItem.MB002=newItem.MB002
             invmbItem.MB003=newItem.MB003
             invmbItem.MB009=newItem.MB009
             updateList.append(invmbItem)
